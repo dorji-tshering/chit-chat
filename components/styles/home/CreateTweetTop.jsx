@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import useTweet from '../../../hooks/useTweet';
-
 import TweetForm from '../Tweet/TweetForm';
 
+// component for top home content tweet form
 const Container = styled.div`
   padding: 15px;
 `

@@ -5,8 +5,7 @@ import Modal from '../Modal'
 import TweetActorName from './TweetActorName'
 import TweetForm from './TweetForm';
 
-// Component for the comments on tweet
-
+// Component for the tweet comment
 const Container = styled.div`
   .modal-block {
     padding: 15px;
@@ -33,9 +32,8 @@ const BlockContent = styled.div`
     }
 
     .img {
-      width: 40px;
+      min-width: 40px;
       height: 40px;
-      border-radius: 50%;
       margin-right: 15px;
       border-radius: 50%;
       overflow: hidden;
@@ -58,6 +56,10 @@ const BlockContent = styled.div`
         &--id {
           color: #888;
         }
+      }
+
+      .tweet__actor-link {
+          pointer-events: none;
       }
 
       .tweet-text {
@@ -106,7 +108,7 @@ const BlockContent = styled.div`
     }
   }
 `;
-
+ 
 export default function CommentDialog({
     activity,
     onPostComment, 

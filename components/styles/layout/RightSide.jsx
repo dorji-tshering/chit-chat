@@ -69,21 +69,25 @@ const Container = styled.div`
   .follows {
     background-color: #222;
     border-radius: 20px;
-    padding: 15px;
     h2 {
       font-size: 20px;
       color: white;
+      padding: 12px 16px;
     }
   }
+
+
+
   .trends {
     margin-top: 10px;
-    &-list {
-      margin-top: 30px;
-    }
     .trend {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 30px;
+      padding: 12px 16px;
+      cursor: pointer;
+      &:hover {
+          background: #2f2e2e;
+      }
       &__details {
         &__category {
           font-size: 13px;
@@ -120,18 +124,46 @@ const Container = styled.div`
       }
       .more-btn {
         opacity: 0.5;
+        padding: 0;
+        max-height: 40px;
+        max-width: 40px;
+        min-height: 40px;
+        min-width: 40px;
+        border-radius: 50%;
+        svg {
+            display: block;
+            margin: auto;
+        }
+        &:hover {
+            background: #222;
+            opacity: 1;
+        }
+
+        &:hover svg {
+            fill: var(--theme-color);
+        }
       }
+    }
+    .show-more-trends {
+        padding: 16px;
+        display: block;
+        color: var(--theme-color);
+        border-radius: 0px 0px 20px 20px;
+        &:hover {
+            background: #2f2e2e;
+        }
     }
   }
   .follows {
     margin-top: 20px;
-    &-list {
-      margin-top: 30px;
-    }
     .user {
-      margin-bottom: 30px;
       display: flex;
       justify-content: space-between;
+      padding: 12px 16px;
+      &:hover {
+          background: #2f2e2e;
+      }
+      cursor: pointer;
       &__details {
         display: flex;
         text-decoration: none;
@@ -163,7 +195,13 @@ const Container = styled.div`
     }
     .show-more-text {
       font-size: 14px;
+      cursor: pointer;
       color: var(--theme-color);
+      padding: 16px;
+      border-radius: 0px 0px 20px 20px;
+      &:hover {
+            background: #2f2e2e;
+      }
     }
   }
 `;
@@ -252,6 +290,9 @@ export default function RightSide() {
                 )
               })}
             </div>
+            <Link href={'/trends'}>
+                <a className="show-more-trends">Show more</a>
+            </Link>
           </div>
     
           <div className="follows">

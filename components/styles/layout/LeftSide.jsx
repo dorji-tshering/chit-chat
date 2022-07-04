@@ -174,11 +174,11 @@ const Container = styled.div`
   }
 `;
 
-export default function LeftSide({ onClickTweet }) {
+export default function LeftSide({ onClickTweet, onClickLogout }) {
     const location = Router.pathname;
     const { userData } = useStreamContext();
   
-    const [newNotifications, setNewNotifications] = useState(0)
+    const [newNotifications, setNewNotifications] = useState(0);
   
     if (!userData)
       return (
@@ -236,7 +236,7 @@ export default function LeftSide({ onClickTweet }) {
                 <Twitter color="white" size={25}/>
             </a>
           </Link>
-          <div className="buttons">
+            <div className="buttons">
             {menus.map((m) => {
               const isActiveLink =
                 location.pathname === `/${m.id}` ||
@@ -267,29 +267,32 @@ export default function LeftSide({ onClickTweet }) {
               )
             })}
             <button className="btn--more">
-              <div className="btn--icon">
-                <More color="white" size={20} />
-              </div>
-              <span>More</span>
+                <div className="btn--icon">
+                    <More color="white" size={20} />
+                </div> 
+                <span>More</span>
             </button>
-          </div>
-          <button onClick={onClickTweet} className="tweet-btn">
-            Tweet
-          </button>
-          <button className="profile-section">
-            <div className="details">
-              <div className="details__img">
-                <img src={userData.image} alt="" />
-              </div>
-              <div className="details__text">
-                <span className="details__text__name">{userData.name}</span>
-                <span className="details__text__id">@{userData.id}</span>
-              </div>
             </div>
-            <div>
-              <More color="white" />
-            </div>
-          </button>
+
+            <button onClick={onClickTweet} className="tweet-btn">
+                Tweet
+            </button>
+
+            <button className="profile-section" onClick={onClickLogout}>
+                <div className="details">
+                    <div className="details__img">
+                        <img src={userData.image} alt="" />
+                    </div>
+                    <div className="details__text">
+                        <span className="details__text__name">{userData.name}</span>
+                        <span className="details__text__id">@{userData.id}</span>
+                    </div>
+                </div>
+
+                <div>
+                <More color="white" />
+                </div>
+            </button>
         </Container>
     )
   }

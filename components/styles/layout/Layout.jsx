@@ -1,11 +1,23 @@
 import { useState } from 'react';
 import { useStreamContext } from 'react-activity-feed';
 import styled from 'styled-components';
+import Logout from '../popups/Logout';
+import Modal from '../Modal';
 
 import LeftSide from './LeftSide';
 import CreateTweetDialog from '../Tweet/CreateTweetDialog';
 import RightSide from './RightSide';
 import LoadingIndicator from '../LoadingIndicator';
+
+const ModalContainer = styled.div`
+    .logout-modal {
+        height: min-content;
+
+        .close-btn {
+            display: none;
+        }
+    }
+`;
 
 const Container = styled.div`
   min-height: 100vh;
@@ -39,27 +51,37 @@ const Container = styled.div`
   .right-side-bar {
     width: var(--right);
   }
-`;
+`; 
 
 
 
 export default function Layout({ children }) {
     const { user } = useStreamContext();
     const [createDialogOpened, setCreateDialogOpened] = useState(false);
-  
+    const [logoutOpen, setLogoutOpen] = useState(false);
+
     if (!user) return <LoadingIndicator />;
   
     return (
       <>
-        {createDialogOpened && (
-          <CreateTweetDialog
-            onClickOutside={() => setCreateDialogOpened(false)}
-          />
-        )}
+        <ModalContainer>
+            {createDialogOpened && (
+            <CreateTweetDialog
+                onClickOutside={() => setCreateDialogOpened(false)}
+            />
+            )}
+
+            {logoutOpen && (
+                <Modal className="logout-modal" backdropClassName='logout' onClickOutside={() => setLogoutOpen(false)}>
+                    <Logout userData={user.data}/>
+                </Modal>
+            ) }
+        </ModalContainer>
+
         <Container>
           <div className="content">
             <div className="left-side-bar">
-              <LeftSide onClickTweet={() => setCreateDialogOpened(true)} />
+              <LeftSide onClickTweet={() => setCreateDialogOpened(true)} onClickLogout={() => setLogoutOpen(true)} />
             </div>
             <main className="main-content">
               {!user ? <LoadingIndicator /> : children}

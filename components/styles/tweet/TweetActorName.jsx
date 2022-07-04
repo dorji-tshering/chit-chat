@@ -4,12 +4,13 @@ import styled from 'styled-components';
 
 const TextBlock = styled.div`
     padding: 0;
-    margin: 0 0 10px 0;
     width: fit-content;
+    margin-left: 10px;
 
     .user--name {
         color: white;
-        
+        font-weight: bold;
+        font-size: 16px;
         &:hover {
             text-decoration: underline;
         }
@@ -18,7 +19,8 @@ const TextBlock = styled.div`
     .id--wrapper {
         display: flex;
         color: #777;
-
+        font-size: 15px;
+        margin-top: 2px;
         .separator {
             margin: 0px 5px;
             line-height: 8px;
@@ -45,7 +47,7 @@ export default function TweetActorName({ time, name, id }) {
     return (
         <TextBlock>
             <Link href={`/${id}`}>
-                <a>
+                <a onClick={(e) => e.stopPropagation()} className='tweet__actor-link'>
                     <span className="user--name">{name}</span>
                     <span className="id--wrapper">
                         <span className="user--id">@{id}</span>

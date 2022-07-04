@@ -6,6 +6,7 @@ import MainHeader from './MainHeader'
 import Timeline from '../Home/Timeline'
 import LoadingIndicator from '../LoadingIndicator'
 
+// middle component along LeftSide and RightSide
 const Container = styled.div`
   .header {
     position: sticky;

@@ -15,6 +15,22 @@ const Header = styled.header`
 
   h1 {
     font-size: 20px;
+    cursor: pointer;
+    flex-grow: 1;
+  }
+
+  .header__right-icon {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover {
+        background: #222;
+    }
   }
 `
 
@@ -22,7 +38,9 @@ export default function MainHeader() {
   return (
     <Header>
       <h1>Home</h1>
-      <Star color="white" />
+      <span className="header__right-icon">
+        <Star color="white" />
+      </span>
     </Header>
   )
 }

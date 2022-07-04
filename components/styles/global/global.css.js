@@ -18,6 +18,7 @@ export default createGlobalStyle`
         'Helvetica Neue', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        font-size: 15px;
     }
     
     code {
@@ -34,6 +35,10 @@ export default createGlobalStyle`
     
     button:disabled {
         cursor: not-allowed;
+    }
+
+    p {
+        font-size: 15px;
     }
     
     h1,

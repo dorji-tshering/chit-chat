@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import { useState } from 'react'
 import { useStreamContext } from 'react-activity-feed'
 import Router from 'next/router';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 import { formatStringWithLink } from '../../../utils/string'
@@ -16,21 +17,26 @@ import { generateTweetLink } from '../../../utils/links'
 
 const Block = styled.div`
   display: flex;
+  flex-direction: column;
   border-bottom: 1px solid #333;
   padding: 15px;
+  position: relative;
+  cursor: pointer;
 
-  .user-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 10px;
+  &:hover {
+      background: #b1bac41f;
+  }
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+  .user-details {
+      display: flex;
+      margin-bottom: 5px;
+      align-items: center;
+
+      img {
+          min-width: 45px;
+          height: 45px;
+          border-radius: 50%;
+      }
   }
 
   .tweet {
@@ -44,7 +50,6 @@ const Block = styled.div`
 
     &__text {
       color: white;
-      font-size: 15px;
       line-height: 20px;
       margin-top: 3px;
       width: 100%;
@@ -63,6 +68,33 @@ const Block = styled.div`
       button {
         display: flex;
         align-items: center;
+
+        & svg {
+            display: block;
+        }
+
+        .icon-wrapper {
+            height: 35px;
+            width: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        &:hover {
+            .icon-wrapper {
+                background: #222;
+
+                svg {
+                    fill: var(--theme-color);
+                }
+            }
+
+            .tweet__actions__value {
+                color: var(--theme-color);
+            }
+        }
       }
 
       &__value {
@@ -93,6 +125,21 @@ const Block = styled.div`
     width: 40px;
     height: 40px;
     display: flex; 
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+
+    &:hover {
+        background: #222;
+        opacity: 1;
+
+        & svg {
+            fill: var(--theme-color);
+        }
+    }
   }
 `;
 
@@ -153,17 +200,20 @@ export default function TweetBlock({ activity }) {
 
     return (
         <>
-          <Block>
-            <div className="user-image">
-              <img src={actor.data.image} alt="" />
-            </div>
-            <div className="tweet">
-              <button onClick={() => Router.push(tweetLink)} className="link">
-                <TweetActorName
+          <Block onClick={() => Router.push(tweetLink)} className="link">
+            <div className="user-details">
+              <Link href={`/${actor.id}`}>
+                  <a onClick={(e) => e.stopPropagation()}>
+                      <img src={actor.data.image} alt="" />
+                  </a>
+              </Link>
+              <TweetActorName
                   name={actor.data.name}
                   id={actor.id}
                   time={activity.time}
                 />
+            </div>
+            <div className="tweet">
                 <div className="tweet__details">
                     <p
                         className="tweet__text"
@@ -175,7 +225,6 @@ export default function TweetBlock({ activity }) {
                         }}
                     />
                 </div>
-              </button>
     
               <div className="tweet__actions">
                 {actions.map((action) => {
@@ -188,15 +237,17 @@ export default function TweetBlock({ activity }) {
                       key={action.id}
                       type="button"
                     >
-                      <action.Icon
-                        color={
-                          action.id === 'heart' && hasLikedTweet
-                            ? 'var(--theme-color)'
-                            : '#777'
-                        }
-                        size={17}
-                        fill={action.id === 'heart' && hasLikedTweet && true}
-                      />
+                      <span className="icon-wrapper">
+                        <action.Icon
+                            color={
+                            action.id === 'heart' && hasLikedTweet
+                                ? 'var(--theme-color)'
+                                : '#777'
+                            }
+                            size={17}
+                            fill={action.id === 'heart' && hasLikedTweet && true}
+                        />
+                      </span>
                       <span
                         className={classNames('tweet__actions__value', {
                           colored: action.id === 'heart' && hasLikedTweet,
@@ -209,7 +260,7 @@ export default function TweetBlock({ activity }) {
                 })}
               </div>
             </div>
-            <button className="more">
+            <button className="more" onClick={(e) => e.stopPropagation() /* prevent event propagation to the parent element */}>
               <More color="#777" size={20} />
             </button>
           </Block>

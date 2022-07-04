@@ -25,6 +25,12 @@ const Container = styled.div`
       position: relative;
       left: -10px;
     }
+
+    &.logout-modal {
+        position: absolute;
+        bottom: 127px;
+        left: 30px;
+    }
   }
 `
 
@@ -32,16 +38,20 @@ const Backdrop = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  left: 0;
+  left: 0; 
   top: 0;
   background-color: rgba(255, 255, 255, 0.2);
+
+  &.logout {
+      background-color: transparent;
+  }
 `
 
 
-export default function Modal({ className, children, onClickOutside }) {
+export default function Modal({ className, backdropClassName, children, onClickOutside }) {
     return (
       <Container>
-        <Backdrop onClick={() => onClickOutside()} />
+        <Backdrop className={classNames('backdrop', backdropClassName)} onClick={() => onClickOutside()} />
         <div className={classNames('modal', className)}>
           <button onClick={onClickOutside} className="close-btn">
             <Close color="white" size={24} />
