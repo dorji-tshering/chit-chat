@@ -15,7 +15,7 @@ const API_KEY = 'cagbpmqjzekp';
 // _app.jsx will be rendered on every page of the application(top-level-component)
 function MyApp({ Component, pageProps }) {
     const userId = getFromStorage('user'); 
-
+   
     // check if user is currently logged in
     const user = USERS.find((u) => u.id === userId);
     const [client, setClient] = useState(null);
