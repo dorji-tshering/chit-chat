@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Router from 'next/router';
 import styled from 'styled-components'
 import users from '../utils/users'
-import { saveToStorage } from '../utils/storage'
+import { saveToStorage, getFromStorage } from '../utils/storage';
 
 const Main = styled.main`
   background-color: black;
@@ -44,12 +44,19 @@ const Main = styled.main`
   }
 `;
 
-export default function Login({setOnLoginPage, setUserName}) {
+export default function Login({ setOnLoginPage }) {
+    const user = getFromStorage('user');
+    if(user) {
+        Router.push('/home');
+        return;
+    }
+
     const onClickUser = (id) => {
         saveToStorage('user', id)
         Router.push('/home');
+
+        // causes app re-render and re-run of useEffect
         setOnLoginPage(false);
-        setUserName(id);
     } 
 
     return (

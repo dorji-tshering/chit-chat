@@ -5,7 +5,6 @@ import Modal from '../Modal';
 import TweetForm from './TweetForm';
 
 // Component to create tweet 
-
 const Container = styled.div`
   .modal-block {
     margin-top: 20px;

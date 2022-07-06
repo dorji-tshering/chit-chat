@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import Link from 'next/link';
+import Modal from '../Modal';
+import { useState, useEffect } from 'react';
+
 const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -40,29 +43,50 @@ const Container = styled.div`
             }
         }
     }
-
 `;
 
+ 
+const Logout = ({userData, onClickOutside, leftSidebarRef}) => {
+    // initialize left offset of left sidebar
+    const [leftOffset, setLeftOffset] = useState(null);
 
-const Logout = ({userData}) => {
+    const handleResize = () => {
+        setLeftOffset(leftSidebarRef.current.getBoundingClientRect().left + 30);
+    }
+
+    useEffect(() => {
+        if(!leftOffset) {
+            setLeftOffset(leftSidebarRef.current.getBoundingClientRect().left + 30);
+        }
+        window.addEventListener('resize', handleResize);
+        return(() => {
+            window.removeEventListener('resize', handleResize, false);
+        });
+    },[]);
+
+
+
+
     return (
-        <Container>
-            <div className="top-section">
-                <img src={userData.image} alt="profile-image" />
-                <span className="user_details">
-                    <span className="user_name">{userData.name}</span>
-                    <span className="user_id">@{userData.id}</span>
-                </span>
-            </div>
-            <div className="bottom_links">
-                <Link href='/login'>
-                    <a>Add and existing account </a>
-                </Link>
-                <Link href='/logout'>
-                    <a>Logout @{userData.id}</a>    
-                </Link>
-            </div>
-        </Container>
+        <Modal className='logout-modal' backdropClassName='logout' onClickOutside={onClickOutside} sidebarLeft={leftOffset}>
+            <Container>
+                <div className="top-section">
+                    <img src={userData.image} alt="profile-image" />
+                    <span className="user_details">
+                        <span className="user_name">{userData.name}</span>
+                        <span className="user_id">@{userData.id}</span>
+                    </span>
+                </div>
+                <div className="bottom_links">
+                    <Link href='/login'>
+                        <a>Add and existing account </a>
+                    </Link>
+                    <Link href='/logout'>
+                        <a>Logout @{userData.id}</a>    
+                    </Link>
+                </div>
+            </Container>
+        </Modal>
     );
 };
 

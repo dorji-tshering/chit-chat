@@ -13,3 +13,9 @@ export const getFromStorage = (key) => {
         return window.localStorage.getItem(key);
     }
 }
+
+export const removeFromStorage = () => {
+    if (typeof window !== 'undefined') {
+        window.localStorage.clear();
+    }
+}

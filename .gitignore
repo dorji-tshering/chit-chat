@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# text Files
+/notes.txt
+
 # testing
 /coverage
 

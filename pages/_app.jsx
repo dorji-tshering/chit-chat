@@ -7,24 +7,19 @@ import Router from 'next/router';
 import { StreamApp } from 'react-activity-feed';
 import USERS from '../utils/users';
 import { getFromStorage } from '../utils/storage'; 
-import Authentication from '../utils/auth';
-import Login from './login';
-import LoadingIndicator from '../components/styles/LoadingIndicator'
+import LoadingIndicator from '../components/styles/LoadingIndicator';
 
 const APP_ID = '1196591';
 const API_KEY = 'cagbpmqjzekp';
 
 // _app.jsx will be rendered on every page of the application(top-level-component)
-
 function MyApp({ Component, pageProps }) {
-    const userId = getFromStorage('user');
-    console.log('app.js');
+    const userId = getFromStorage('user'); 
 
     // check if user is currently logged in
     const user = USERS.find((u) => u.id === userId);
     const [client, setClient] = useState(null);
     const [onLoginPage, setOnLoginPage] = useState(false);
-    const [userName, setUserName] = useState(userId);
 
     useEffect(() => {
         async function init() {
@@ -41,20 +36,21 @@ function MyApp({ Component, pageProps }) {
         }else if(user) {
             init();
         }   
-
-        console.log('useeffect');
-        }, [userName,])
+    }, [onLoginPage,])
 
     if(!client && !onLoginPage) {
-        return<LoadingIndicator/>;
+        return <>
+            <GlobalStyles/>
+            <LoadingIndicator/>
+        </>;
     }
 
     return (
         <>
             {
-                onLoginPage ? <>
+                onLoginPage || !userId ? <>
                     <GlobalStyles/>
-                    <Component setOnLoginPage={setOnLoginPage} setUserName={setUserName} {...pageProps} />
+                    <Component setOnLoginPage={setOnLoginPage} {...pageProps} />
                 </> 
                 : 
                 <StreamApp token={user.token} appId={APP_ID} apiKey={API_KEY}>
@@ -66,10 +62,9 @@ function MyApp({ Component, pageProps }) {
                             }
                         }}
                     >
-                        
                         <GlobalStyles/>
                         <ScrollToTop/>
-                        <Component {...pageProps} />  
+                        <Component {...pageProps} client={client} />  
                     </ThemeProvider>
                 </StreamApp>  
             }

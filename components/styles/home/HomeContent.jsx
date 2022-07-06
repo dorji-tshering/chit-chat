@@ -32,7 +32,7 @@ const Container = styled.div`
     }
   }
 `;
-
+ 
 export default function HomeContent() {
     const { user } = useStreamContext();
     const userData = user.data;

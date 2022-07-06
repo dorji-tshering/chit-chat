@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useStreamContext } from 'react-activity-feed';
 import styled from 'styled-components';
 import Logout from '../popups/Logout';
-import Modal from '../Modal';
 
 import LeftSide from './LeftSide';
 import CreateTweetDialog from '../Tweet/CreateTweetDialog';
@@ -53,12 +52,16 @@ const Container = styled.div`
   }
 `; 
 
-
-
 export default function Layout({ children }) {
     const { user } = useStreamContext();
     const [createDialogOpened, setCreateDialogOpened] = useState(false);
     const [logoutOpen, setLogoutOpen] = useState(false);
+    const leftSidebarRef = useRef();
+
+    // remove resize event upon clicking on backdrop and button links
+    const onClickOutside = () => {
+        setLogoutOpen(false);
+    }
 
     if (!user) return <LoadingIndicator />;
   
@@ -72,15 +75,13 @@ export default function Layout({ children }) {
             )}
 
             {logoutOpen && (
-                <Modal className="logout-modal" backdropClassName='logout' onClickOutside={() => setLogoutOpen(false)}>
-                    <Logout userData={user.data}/>
-                </Modal>
+                <Logout userData={user.data} onClickOutside={onClickOutside} leftSidebarRef={leftSidebarRef}/>
             ) }
         </ModalContainer>
 
         <Container>
           <div className="content">
-            <div className="left-side-bar">
+            <div className="left-side-bar" ref={leftSidebarRef}>
               <LeftSide onClickTweet={() => setCreateDialogOpened(true)} onClickLogout={() => setLogoutOpen(true)} />
             </div>
             <main className="main-content">

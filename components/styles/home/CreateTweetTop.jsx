@@ -5,6 +5,11 @@ import TweetForm from '../Tweet/TweetForm';
 // component for top home content tweet form
 const Container = styled.div`
   padding: 15px;
+
+  .tweet-top-form .input-section .actions {
+      height: auto;
+      flex-wrap: wrap;
+  }
 `
 
 export default function CreateTweetTop() {
@@ -16,7 +21,7 @@ export default function CreateTweetTop() {
 
     return (
         <Container>
-            <TweetForm placeholder="What's happening?" onSubmit={onSubmit} />
+            <TweetForm className="tweet-top-form" placeholder="What's happening?" onSubmit={onSubmit} />
         </Container>
     )
 }

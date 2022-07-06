@@ -54,7 +54,7 @@ const Container = styled.div`
       text-decoration: none;
       --icon-size: 25px;
 
-      .btn--icon {
+      .btn--icon { 
         margin-right: 15px;
         height: var(--icon-size);
         width: var(--icon-size);

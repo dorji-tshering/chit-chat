@@ -4,16 +4,17 @@ import { useStreamContext } from 'react-activity-feed'
 import Router from 'next/router';
 import Link from 'next/link';
 import styled from 'styled-components';
+import LoadingIndicator from '../LoadingIndicator';
 
-import { formatStringWithLink } from '../../../utils/string'
-import CommentDialog from './CommentDialog'
-import Comment from '../../Icons/Comment'
-import Heart from '../../Icons/Heart'
-import Retweet from '../../Icons/Retweet'
-import Upload from '../../Icons/Upload'
-import More from '../../Icons/More'
-import TweetActorName from './TweetActorName'
-import { generateTweetLink } from '../../../utils/links'
+import { formatStringWithLink } from '../../../utils/string';
+import CommentDialog from './CommentDialog';
+import Comment from '../../Icons/Comment';
+import Heart from '../../Icons/Heart';
+import Retweet from '../../Icons/Retweet';
+import Upload from '../../Icons/Upload';
+import More from '../../Icons/More';
+import TweetActorName from './TweetActorName';
+import { generateTweetLink } from '../../../utils/links';
 
 const Block = styled.div`
   display: flex;
