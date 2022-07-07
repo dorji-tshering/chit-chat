@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useStreamContext } from 'react-activity-feed';
 import Link from 'next/link';
 import styled from 'styled-components';
+import useFollow from '../../../hooks/useFollow';
 
 import USERS from '../../../utils/users';
 import FollowBtn from '../ui/FollowBtn';
@@ -235,13 +236,12 @@ const trends = [
 ];
 
 export default function RightSide() {
-    const [searchText, setSearchText] = useState('')
-  
-    const { client } = useStreamContext()
+    const [searchText, setSearchText] = useState('');
+    const { client } = useStreamContext();
   
     const whoToFollow = USERS.filter((u) => {
-      // filter out currently logged in user
-      return u.id !== client.userId
+      // filter out currently logged in and followed user
+      return u.id !== client.userId && !useFollow({userId : u.id, getFollowStatus : true});
     })
 
     return (
@@ -293,7 +293,7 @@ export default function RightSide() {
             <Link href={'/trends'}>
                 <a className="show-more-trends">Show more</a>
             </Link>
-          </div>
+          </div> 
     
           <div className="follows">
             <h2>Who to follow</h2>
@@ -312,7 +312,7 @@ export default function RightSide() {
                             </div>
                         </a>
                     </Link>
-                    <FollowBtn userId={user.id} />
+                    <FollowBtn userId={user.id}/>
                   </div>
                 )
               })}
@@ -321,4 +321,4 @@ export default function RightSide() {
           </div>
         </Container>
     )
-}
+} 

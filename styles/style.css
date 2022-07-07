@@ -1,0 +1,19 @@
+.sample li {
+    list-style: none;
+  }
+  
+  /* set explicit height and width for the container*/
+ .sample .container {
+    border: 4px solid blue;
+    padding: 0;
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    position: relative;
+  }
+  
+.sample  .expand {
+    background-color: green;
+  }

@@ -4,7 +4,6 @@ import { useStreamContext } from 'react-activity-feed'
 import Router from 'next/router';
 import Link from 'next/link';
 import styled from 'styled-components';
-import LoadingIndicator from '../LoadingIndicator';
 
 import { formatStringWithLink } from '../../../utils/string';
 import CommentDialog from './CommentDialog';
@@ -148,9 +147,7 @@ export default function TweetBlock({ activity }) {
     const { user } = useStreamContext();
     const [commentDialogOpened, setCommentDialogOpened] = useState(false)
     const actor = activity.actor;
-  
     let hasLikedTweet = false;
-  
     const tweet = activity.object.data;
   
     // check if current logged in user has liked tweet

@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
     useEffect(() => {
         async function init() {
             const client = new StreamClient(API_KEY, user.token, APP_ID);
-            await client.user(user.id).getOrCreate({ ...user, token: '' });
+            await client.user(user.id).getOrCreate({ ...user});
             setClient(client);
         }
 
