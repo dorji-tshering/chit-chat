@@ -2,7 +2,7 @@ import { removeFromStorage } from "../utils/storage";
 import styled from 'styled-components';
 import Twitter from '../components/Icons/Twitter';
 import Router from 'next/router';
-import Modal from '../components/styles/Modal';
+import Modal from '../components/styled/Modal';
 
 const Wrapper = styled.div`
     max-width: 300px;

@@ -51,7 +51,7 @@ const Container = styled.div`
     width: var(--right);
   }
 `; 
-
+ 
 export default function Layout({ children }) {
     const { user } = useStreamContext();
     const [createDialogOpened, setCreateDialogOpened] = useState(false);

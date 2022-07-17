@@ -1,10 +1,10 @@
-import Layout from '../components/styles/layout/Layout';
-import HomeContent from '../components/styles/home/HomeContent';
+import Layout from '../components/styled/layout/Layout';
+import HomeContent from '../components/styled/home/HomeContent';
 
 export default function Home() {
 
   return (
-    <Layout client>
+    <Layout>
       <HomeContent />
     </Layout>
   )

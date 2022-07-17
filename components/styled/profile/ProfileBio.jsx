@@ -8,7 +8,7 @@ import Mail from '../../Icons/Mail';
 import Calendar from '../../Icons/Calendar';
 import { formatStringWithLink } from '../../../utils/string';
 import { ProfileContext } from './ProfileContent';
-import FollowBtn from '../../styles/ui/FollowBtn';
+import FollowBtn from '../../styled/ui/FollowBtn';
 
 const Container = styled.div`
   padding: 20px;

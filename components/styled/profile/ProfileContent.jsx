@@ -29,7 +29,6 @@ export default function ProfileContent() {
     useEffect(() => {
         const getUser = async () => {
             const user = await client.user(user_id).get({ with_follow_counts: true })
-            
             setUser(user.full)
         }
 

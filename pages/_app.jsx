@@ -1,4 +1,4 @@
-import GlobalStyles from '../components/styles/global/global.css';
+import GlobalStyles from '../components/styled/global/global.css';
 import { ThemeProvider } from 'styled-components';
 import ScrollToTop from '../components/ScrollToTop';
 import { useEffect, useState } from 'react';
@@ -7,7 +7,7 @@ import Router from 'next/router';
 import { StreamApp } from 'react-activity-feed';
 import USERS from '../utils/users';
 import { getFromStorage } from '../utils/storage'; 
-import LoadingIndicator from '../components/styles/LoadingIndicator';
+import LoadingIndicator from '../components/styled/LoadingIndicator';
 
 const APP_ID = '1196591';
 const API_KEY = 'cagbpmqjzekp';
@@ -15,6 +15,7 @@ const API_KEY = 'cagbpmqjzekp';
 // _app.jsx will be rendered on every page of the application(top-level-component)
 function MyApp({ Component, pageProps }) {
     const userId = getFromStorage('user'); 
+    console.log(userId);
    
     // check if user is currently logged in
     const user = USERS.find((u) => u.id === userId);

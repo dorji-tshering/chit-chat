@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import styled from 'styled-components';
-import { useState } from 'react';
 import useFollow from '../../../hooks/useFollow';
 
 const Container = styled.div`
