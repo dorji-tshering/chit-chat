@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import useTweet from '../../../hooks/useTweet';
-import TweetForm from '../Tweet/TweetForm';
+import TweetForm from '../tweet/TweetForm';
 
 // component for top home content tweet form
 const Container = styled.div`

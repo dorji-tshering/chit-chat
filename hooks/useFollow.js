@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useStreamContext } from 'react-activity-feed';
+import useNotification from './useNotification';
 
 // accepts user_id of other user which can be followed or unfollowed
 export default function useFollow({ userId, getFollowStatus = false }) {
     const { client } = useStreamContext();
+    const { createNotification } = useNotification();
 
     const [isFollowing, setIsFollowing] = useState(false);
 
@@ -22,13 +24,15 @@ export default function useFollow({ userId, getFollowStatus = false }) {
 
     const toggleFollow = async () => {
         const action = isFollowing ? 'unfollow' : 'follow';
-      
+        
+        if (action === 'follow') {
+            await createNotification(userId, 'follow');
+        }
         // get current user feed
         const timelineFeed = client.feed('timeline', client.userId);
-
         // follow or unfollow other user's feed
         await timelineFeed[action]('user', userId);
-      
+
         setIsFollowing((isFollowing) => !isFollowing);
     }
 

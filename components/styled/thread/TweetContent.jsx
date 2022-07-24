@@ -12,7 +12,7 @@ import Heart from '../../Icons/Heart';
 import Upload from '../../Icons/Upload';
 import TweetForm from '../tweet/TweetForm';
 import TweetCommentBlock from './TweetCommentBlock';
-import CommentDialog from '../Tweet/CommentDialog';
+import CommentDialog from '../tweet/CommentDialog';
 import More from '../../Icons/More';
 import useComment from '../../../hooks/useComment';
 import useLike from '../../../hooks/useLike';
@@ -129,7 +129,7 @@ const Container = styled.div`
         align-items: center;
         padding: 15px 0;
         border-bottom: 1px solid #555;
-    }
+    } 
 `;
 
 export default function TweetContent({ activity }) {

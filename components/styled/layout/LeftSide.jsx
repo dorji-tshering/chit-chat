@@ -176,16 +176,42 @@ const Container = styled.div`
 
 export default function LeftSide({ onClickTweet, onClickLogout }) {
     const location = Router.pathname;
-    const { userData } = useStreamContext();
-  
+    const { client, userData } = useStreamContext();
     const [newNotifications, setNewNotifications] = useState(0);
+    
+    useEffect(() => {
+        if (!userData || location === `/notifications`) return;
+
+        let notifFeed;
+
+        async function init() {
+            notifFeed = client.feed('notification', userData.id)
+            const notifications = await notifFeed.get()
+
+            const unread = notifications.results.filter(
+                (notification) => !notification.is_seen
+            )
+
+            setNewNotifications(unread.length)
+
+            notifFeed.subscribe((data) => {
+                setNewNotifications(newNotifications + data.new.length)
+            })
+        }
+
+        init();
+
+        return () => notifFeed?.unsubscribe();
+    }, [userData]);
   
-    if (!userData)
-      return (
-        <Container>
-          <LoadingIndicator />
-        </Container>
-      )
+    if (!userData) {
+        return (
+            <Container>
+            <LoadingIndicator />
+            </Container>
+        );
+    }
+        
   
     const menus = [
       {
@@ -295,4 +321,4 @@ export default function LeftSide({ onClickTweet, onClickLogout }) {
             </button>
         </Container>
     )
-  }
+}

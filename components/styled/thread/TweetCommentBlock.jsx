@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { formatStringWithLink } from '../../../utils/string';
 import More from '../../Icons/More';
-import TweetActorName from '../Tweet/TweetActorName';
+import TweetActorName from '../tweet/TweetActorName';
 
 const Block = styled.div`
 display: flex;

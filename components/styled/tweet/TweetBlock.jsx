@@ -146,7 +146,6 @@ cursor: pointer;
 `;
 
 export default function TweetBlock({ activity }) {
-    console.log('rendered');
     const { user } = useStreamContext();
     const [commentDialogOpened, setCommentDialogOpened] = useState(false)
     const actor = activity.actor;

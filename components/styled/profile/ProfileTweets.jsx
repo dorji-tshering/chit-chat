@@ -1,20 +1,20 @@
 import { useContext } from 'react';
 import { FlatFeed } from 'react-activity-feed';
 
-import TweetBlock from '../Tweet/TweetBlock';
+import TweetBlock from '../tweet/TweetBlock';
 import { ProfileContext } from './ProfileContent';
 
 export default function MyTweets() {
-  const { user } = useContext(ProfileContext);
+const { user } = useContext(ProfileContext);
 
-  return (
+return (
     <div>
-      <FlatFeed
+    <FlatFeed
         Activity={TweetBlock}
         userId={user.id}
         feedGroup="user"
         notify
-      />
+    />
     </div>
-  )
+)
 }

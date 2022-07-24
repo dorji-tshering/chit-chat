@@ -16,7 +16,7 @@ const Container = styled.div`
   .reply-to {
     font-size: 14px;
     color: #888;
-    display: flex;
+    display: flex; 
     margin-left: 55px;
     margin-bottom: 10px;
 

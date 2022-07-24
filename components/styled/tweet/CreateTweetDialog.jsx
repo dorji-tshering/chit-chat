@@ -12,7 +12,7 @@ const Container = styled.div`
     width: 600px;
     height: max-content;
     z-index: 10;
-  }
+  } 
 
   .tweet-form {
     margin-top: 20px;
@@ -24,7 +24,6 @@ export default function CreateTweetDialog({ onClickOutside }) {
 
 	const onSubmit = async (text) => {
         createTweet(text);
-        console.log(`text from create tweet: ${text}}`);
         onClickOutside();
     }
   

@@ -1,5 +1,5 @@
 import { FlatFeed, useStreamContext } from 'react-activity-feed';
-import TweetBlock from '../Tweet/TweetBlock';
+import TweetBlock from '../tweet/TweetBlock';
 
 // component after CreateTweetTop
 export default function Timeline() {

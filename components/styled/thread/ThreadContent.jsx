@@ -7,31 +7,31 @@ import TweetContent from './TweetContent';
 import ThreadHeader from './ThreadHeader';
 
 export default function ThreadContent() {
-    const { client } = useStreamContext()
+    const { client } = useStreamContext();
     const { tweet_id } = Router.query;
   
-    const feed = useFeedContext()
+    const feed = useFeedContext();
   
-    const [activity, setActivity] = useState(null)
+    const [activity, setActivity] = useState(null);
   
     useEffect(() => {
-      if (feed.refreshing || !feed.hasDoneRequest) return
+      if (feed.refreshing || !feed.hasDoneRequest) return;
   
-      const activityPaths = feed.feedManager.getActivityPaths(tweet_id) || []
+      const activityPaths = feed.feedManager.getActivityPaths(tweet_id) || [];
   
       if (activityPaths.length) {
-        const targetActivity = feed.feedManager.state.activities.getIn([...activityPaths[0]]).toJS()
+        const targetActivity = feed.feedManager.state.activities.getIn([...activityPaths[0]]).toJS();
   
-        setActivity(targetActivity)
+        setActivity(targetActivity);
       }
-    }, [feed.refreshing])
+    }, [feed.refreshing]);
   
-    if (!client || !activity) return <LoadingIndicator />
+    if (!client || !activity) return <LoadingIndicator />;
   
     return (
       <div>
         <ThreadHeader />
         <TweetContent activity={activity} />
       </div>
-    )
+    );
 }

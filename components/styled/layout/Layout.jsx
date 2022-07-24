@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Logout from '../popups/Logout';
 
 import LeftSide from './LeftSide';
-import CreateTweetDialog from '../Tweet/CreateTweetDialog';
+import CreateTweetDialog from '../tweet/CreateTweetDialog';
 import RightSide from './RightSide';
 import LoadingIndicator from '../LoadingIndicator';
 

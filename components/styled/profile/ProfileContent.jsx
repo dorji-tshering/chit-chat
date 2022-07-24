@@ -21,7 +21,6 @@ export const ProfileContext = createContext();
 
 export default function ProfileContent() {
     const { client } = useStreamContext();
-    console.log('profilecontent');
 
     const [user, setUser] = useState(null)
     const { user_id } = Router.query;
