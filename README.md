@@ -1,6 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# My first [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+This project is a NextJs version of ReactJs Twitter Clone which you can find [here](https://getstream.io/blog/build-twitter-clone/). If you want to try out for yourself, you can get all the instructions from there. I had to make some code changes especially with `react-router` and navigations options since NextJs has its own implementation of the library. Apart from the tutorial, I have added the simulation of user login and logout just like you see on twitter.
+
+## Want to try it out?
 
 First, run the development server:
 
