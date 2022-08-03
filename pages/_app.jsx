@@ -9,8 +9,8 @@ import USERS from '../utils/users';
 import { getFromStorage } from '../utils/storage'; 
 import LoadingIndicator from '../components/styled/LoadingIndicator';
 
-const APP_ID = '1196591';
-const API_KEY = 'cagbpmqjzekp';
+const APP_ID = process.env.NEXT_PUBLIC_APP_ID;
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;  
 
 // _app.jsx will be rendered on every page of the application(top-level-component)
 function MyApp({ Component, pageProps }) {
