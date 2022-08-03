@@ -14,7 +14,7 @@ const FEED_ENRICH_OPTIONS = {
 export default function Thread() {
     const { user } = useStreamContext()
 
-    const { user_id } = Router.query
+    const { user_id } = Router.query;
 
     return (
         <Layout>

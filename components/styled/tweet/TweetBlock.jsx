@@ -197,8 +197,8 @@ export default function TweetBlock({ activity }) {
     const tweetLink = activity.id ? generateTweetLink(actor.id, activity.id) : '#'
 
     const onPostComment = async (text) => {
-    // create comment
-    await createComment(text, activity);
+        // create comment
+        await createComment(text, activity);
     }
 
     return (

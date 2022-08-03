@@ -9,12 +9,12 @@ const { user } = useContext(ProfileContext);
 
 return (
     <div>
-    <FlatFeed
-        Activity={TweetBlock}
-        userId={user.id}
-        feedGroup="user"
-        notify
-    />
+        <FlatFeed
+            Activity={TweetBlock}
+            userId={user.id}
+            feedGroup="user"
+            notify
+        />
     </div>
 )
 }
