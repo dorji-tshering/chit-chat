@@ -13,21 +13,6 @@ npm run dev
 yarn dev
 ```
 
-# Dependencies used
-```
-"dependencies": {
-    "classnames": "^2.3.1",
-    "date-fns": "^2.28.0",
-    "getstream": "^8.0.1",
-    "nanoid": "^4.0.0",
-    "next": "12.2.0",
-    "react": "18.2.0",
-    "react-activity-feed": "^1.4.0",
-    "react-dom": "18.2.0",
-    "styled-components": "^5.3.5"
-  }
-```
-
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the app right away. The page auto-updates as you edit the file.
