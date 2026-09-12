@@ -14,9 +14,9 @@
     "getstream": "^8.0.3",
     "nanoid": "^4.0.0",
     "next": "12.2.5",
-    "react": "18.2.0",
+    "react": "19.3.0",
     "react-activity-feed": "^1.4.0",
-    "react-dom": "^18.2.0",
+    "react-dom": "^19.0.0",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
